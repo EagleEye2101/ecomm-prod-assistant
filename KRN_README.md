@@ -5,7 +5,7 @@
 5. create virtual env by running command: uv venv venv --python cpython-3.10.19-macos-aarch64-none  
 6. activate venv: source venv/bin/activate
 7. uv pip install -r requirements.txt
-8. install liveserver extention to view html file 
+8. install liveserver vscode extention to view html file 
 9. pip install steamlit 
 10. To show application UI to fetch realtime data related to rpoducts from external shopping sites : streamlit run scrapper_ui.py 
 11. 
