@@ -8,7 +8,8 @@
 8. install liveserver vscode extention to view html file 
 9. pip install steamlit 
 10. To show application UI to fetch realtime data related to rpoducts from external shopping sites : streamlit run scrapper_ui.py 
-11. 
+11. instade of createing venv we can also use "uv add -r requirement.txt" but we will use traditional way 
+12. 
 
 
 
