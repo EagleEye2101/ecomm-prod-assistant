@@ -76,10 +76,10 @@ class FlipkartScraper:
         items = driver.find_elements(By.CSS_SELECTOR, "div[data-id]")[:max_products]
         for item in items:
             try:
-                title = item.find_element(By.CSS_SELECTOR, "div.KzDlHZ").text.strip()
-                price = item.find_element(By.CSS_SELECTOR, "div.Nx9bqj").text.strip()
-                rating = item.find_element(By.CSS_SELECTOR, "div.XQDdHH").text.strip()
-                reviews_text = item.find_element(By.CSS_SELECTOR, "span.Wphh3N").text.strip()
+                title = item.find_element(By.CSS_SELECTOR, "div.RG5Slk").text.strip()
+                price = item.find_element(By.CSS_SELECTOR, "div.QiMO5r").text.strip()
+                rating = item.find_element(By.CSS_SELECTOR, "div.MKiFS6").text.strip()
+                reviews_text = item.find_element(By.CSS_SELECTOR, "span.PvbNMB").text.strip()   
                 match = re.search(r"\d+(,\d+)?(?=\s+Reviews)", reviews_text)
                 total_reviews = match.group(0) if match else "N/A"
 
