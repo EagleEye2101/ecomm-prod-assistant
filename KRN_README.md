@@ -1,3 +1,7 @@
+#.Project intro : AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
+ETL<> ELT : Extract transform load , Extract load transform 
+FIRECRAWLER or Zepre  to extract data from website like html  
+
 1. from terminal run uv init ecomm-prod-assistant
 2. make sure you have 3.10 in .python-version and pyproject.toml requires-python = ">=3.10"
 3. open vscode, open folder project you just created 
