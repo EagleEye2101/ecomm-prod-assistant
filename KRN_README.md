@@ -2,7 +2,7 @@
 ETL<> ELT : Extract transform load , Extract load transform 
 FIRECRAWLER or Zepre  to extract data from website like html  
 we will use bs4 - BeautifulSoup for scrapping html from webpages 
- 
+
 
 1. from terminal run uv init ecomm-prod-assistant
 2. make sure you have 3.10 in .python-version and pyproject.toml requires-python = ">=3.10"
@@ -15,7 +15,15 @@ we will use bs4 - BeautifulSoup for scrapping html from webpages
 9. pip install steamlit 
 10. To show application UI to fetch realtime data related to rpoducts from external shopping sites : streamlit run scrapper_ui.py 
 11. instade of createing venv we can also use "uv add -r requirement.txt" but we will use traditional way 
-12. 
+12. For accessing the DataStax, for astradb from casandra here is a link: https://accounts.datastax.com/session-service/v1/login
+121. once logged in > crete DB > name it > copy ASTRA_DB_API_ENDPOINT and generate token and copy it to .env variable 
+122. Go to data explorer and note keyspace copy that to .env file 
+13. Vectordb Comparison: https://superlinked.com/vector-db-comparison
+14. Once you log in to the DataStax Vector page, you will get the following page
+
+
+15. to launch steamlit ui : streamlit run scrapper_ui.py
+
 
 
 
