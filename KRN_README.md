@@ -23,6 +23,8 @@ we will use bs4 - BeautifulSoup for scrapping html from webpages
 
 
 15. to launch steamlit ui : streamlit run scrapper_ui.py
+16. run python prod_assistant/retriever/retrieval.py
+
 
 
 
