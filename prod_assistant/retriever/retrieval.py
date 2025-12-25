@@ -14,9 +14,10 @@ class Retriever:
     def __init__(self):
         """_summary_
         """
-        self.model_loader=ModelLoader()
-        self.config=load_config()
+        # Load environment variables first so ModelLoader picks them up
         self._load_env_variables()
+        self.model_loader = ModelLoader()
+        self.config = load_config()
         self.vstore = None
         self.retriever_instance = None
     
