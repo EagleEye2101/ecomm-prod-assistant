@@ -24,7 +24,13 @@ we will use bs4 - BeautifulSoup for scrapping html from webpages
 
 15. to launch steamlit ui : streamlit run scrapper_ui.py
 16. run python prod_assistant/retriever/retrieval.py
+17. run application : uvicorn prod_assistant.router.main:app --reload --port 8000
+18. ask any question in chat , it should be able to anser based on your astra db , if you wish to scrape more data run scraper_ui froom another terminal so that info can be uploaded to astradb simultinessly
 
+
+19. agentic ai framework are - > Langchain, autogen, crewai,n8n , openai kernel , A2A, hugging face small agent ,pydata agno 
+20. No code framework - Langhgraph , autogen, n8n  
+21. langgraph best one 
 
 
 
