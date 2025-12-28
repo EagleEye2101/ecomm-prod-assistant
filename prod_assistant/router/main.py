@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from langchain_core.messages import HumanMessage
 from workflow.agentic_workflow_with_mcp_websearch import AgenticRAG
 #from workflow.agentic_rag_workflow import AgenticRAG
+# specify above files based on what workflow to use from workdlow folder
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")

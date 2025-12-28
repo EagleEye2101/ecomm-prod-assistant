@@ -61,7 +61,7 @@ class AgenticRAG:
         print("--- CALL ASSISTANT ---")
         messages = state["messages"]
         last_message = messages[-1].content
-
+        # based on keywords like price, review, product LLM/we decide to use retriever tool. logic can be expanded for llm to choose automatically
         if any(word in last_message.lower() for word in ["price", "review", "product"]):
             return {"messages": [HumanMessage(content="TOOL: retriever")]}
         else:

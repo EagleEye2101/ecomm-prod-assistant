@@ -1,4 +1,7 @@
-#.Project intro : AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
+#.Project intro : influenced by "corrective rag langgraph " agentic rag 
+Tip : incase you need to uncommit run : git reset --soft HEAD~1 or git restore --staged . or git stash pop 
+
+#AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
 ETL<> ELT : Extract transform load , Extract load transform 
 FIRECRAWLER or Zepre  to extract data from website like html  
 we will use bs4 - BeautifulSoup for scrapping html from webpages 
@@ -45,14 +48,10 @@ we will use bs4 - BeautifulSoup for scrapping html from webpages
 
 # Kill server if its already running , first get PID 
 lsof -i tcp:8000 
-# then note pid and run below 
-kill <PID>
-# force kill 
-kill -9 <PID>
+# then note pid and run below :kill <PID>
+# force kill : kill -9 <PID>
+# force kill one liner : lsof -ti tcp:8000 | xargs -r kill -9
 
-or force kill one liner 
-
-lsof -ti tcp:8000 | xargs -r kill -9
 
 
 
