@@ -10,7 +10,7 @@ async def main():
         #     ],  # absolute path
         #     "transport": "stdio",
         # }
-        "hybrid_search": {
+        "hybrid_search": { # server name 
                 "url": "http://localhost:8000/mcp",
                 "transport": "streamable_http"       
         }
@@ -27,7 +27,7 @@ async def main():
     # --- Step 1: Try retriever first ---
     #query = "Samsung Galaxy S25 price"
     # query = "iPhone 15"
-    query = "iPhone 17?"
+    query = "iPhone 17 price ?"
     retriever_result = await retriever_tool.ainvoke({"query": query})
     print("\nRetriever Result:\n", retriever_result)
 

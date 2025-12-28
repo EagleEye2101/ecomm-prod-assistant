@@ -2,7 +2,7 @@
 ETL<> ELT : Extract transform load , Extract load transform 
 FIRECRAWLER or Zepre  to extract data from website like html  
 we will use bs4 - BeautifulSoup for scrapping html from webpages 
-# techstack - vector db datastrack , langchain , MCP server , duckduckgo web sccraper and product search from flipcart 
+# techstack - vector db datastrack model response grader , langchain , MCP server , duckduckgo web sccraper and product search from flipcart 
 # MCP server tools - retrival as tool, websearch from duckduckgo and product info from flipcart (retrieval.py as a tool)
 # -----------------------------------------------
 1. from terminal run uv init ecomm-prod-assistant
@@ -39,7 +39,9 @@ we will use bs4 - BeautifulSoup for scrapping html from webpages
 # run prod_search_server first then client from mcp_server folder
 # AI documentation product resource https://www.xenodocs.com/chat
 
-24. run python 
+# --- test MCP 
+24. run python prod_assistant/mcp_servers/product_search_server.py
+25 run : python prod_assistant/mcp_servers/client.py
 
 # Kill server if its already running , first get PID 
 lsof -i tcp:8000 
@@ -51,6 +53,8 @@ kill -9 <PID>
 or force kill one liner 
 
 lsof -ti tcp:8000 | xargs -r kill -9
+
+
 
 
 
