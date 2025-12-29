@@ -50,6 +50,7 @@ class Retriever:
                 api_endpoint=self.db_api_endpoint,
                 token=self.db_application_token,
                 namespace=self.db_keyspace,
+                setup_mode="SYNC", # Use SYNC to avoid async issues
                 )
         if not self.retriever_instance:
             top_k = self.config["retriever"]["top_k"] if "retriever" in self.config else 3
@@ -82,12 +83,12 @@ class Retriever:
         return output
     
 if __name__=='__main__':
-    user_query = "Can you suggest good budget iPhone under 1,00,00 INR?"
+    user_query = "iphone 16 price?"
     
     retriever_obj = Retriever()
     
     retrieved_docs = retriever_obj.call_retriever(user_query)
-    
+    print(f"Retrieved {len(retrieved_docs)} documents.")
     def _format_docs(docs) -> str:
         if not docs:
             return "No relevant documents found."
@@ -106,7 +107,7 @@ if __name__=='__main__':
     retrieved_contexts = [_format_docs(doc) for doc in retrieved_docs]
     
     #this is not an actual output this have been written to test the pipeline
-    response="iphone 16 plus, iphone 16, iphone 15 are best phones under 1,00,000 INR."
+    response="iphone 16 price?"
     
     context_score = evaluate_context_precision(user_query,response,retrieved_contexts)
     relevancy_score = evaluate_response_relevancy(user_query,response,retrieved_contexts)

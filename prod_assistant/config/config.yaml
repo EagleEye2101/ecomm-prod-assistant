@@ -9,7 +9,6 @@ embedding_model:
   openai:
     provider: "openai"
     model_name: "text-embedding-3-small"
-
 retriever:
   top_k: 4
 

@@ -47,7 +47,8 @@ class ModelLoader:
     def load_embeddings(self):
         """ Load and return embedding model from Google Generative AI."""
         embeddings_block = self.config["embedding_model"]
-        provider_key = os.getenv("LLM_PROVIDER", "openai")
+
+        provider_key = os.getenv("LLM_PROVIDER", "openai") # Changed default to openai
         if provider_key not in embeddings_block:
             log.error("Embedding provider not found in config", provider=provider_key)
             raise ValueError(f"Embedding provider '{provider_key}' not found in config")
@@ -56,7 +57,7 @@ class ModelLoader:
             embedding_config = embeddings_block[provider_key]
             provider= embedding_config.get("provider")
             model_name = embedding_config.get("model_name")
-            log.info("Loading LLM", provider=provider, model=model_name)
+            log.info("Loading Embedding", provider=provider, model=model_name)
 
             if provider == "google":
                 # Patch: Ensure an event loop exists for gRPC aio
@@ -69,19 +70,8 @@ class ModelLoader:
                     model=model_name,
                     google_api_key=self.api_key_mgr.get("GOOGLE_API_KEY")  # type: ignore
                 )
-            elif provider == "groq":
-                                # Patch: Ensure an event loop exists for gRPC aio
-                try:
-                    asyncio.get_running_loop()
-                except RuntimeError:
-                    asyncio.set_event_loop(asyncio.new_event_loop())
-                return ChatGroq(
-                    model=model_name,
-                    api_key=self.api_key_mgr.get("GROQ_API_KEY") #type: ignore
-                )
-
             elif provider == "openai":
-                                # Patch: Ensure an event loop exists for gRPC aio
+                # Patch: Ensure an event loop exists for gRPC aio
                 try:
                     asyncio.get_running_loop()
                 except RuntimeError:
@@ -103,8 +93,9 @@ class ModelLoader:
     def load_llm(self):
         """ Load and return the configured LLM model."""
         llm_block = self.config["llm"]
-        #provider_key = os.getenv("LLM_PROVIDER", "openai")
-        provider_key = os.getenv("LLM_PROVIDER", "google")
+        provider_key = os.getenv("LLM_PROVIDER", "openai")
+
+        #provider_key = os.getenv("LLM_PROVIDER", "groq") # Changed default to groq
         if provider_key not in llm_block:
             log.error("LLM provider not found in config", provider=provider_key)
             raise ValueError(f"LLM provider '{provider_key}' not found in config")

@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from typing import List
 from langchain_core.documents import Document
 from langchain_astradb import AstraDBVectorStore
-from prod_assistant.utils.model_loader import ModelLoader
-from prod_assistant.utils.config_loader import load_config
+from utils.model_loader import ModelLoader
+from utils.config_loader import load_config
 
 class DataIngestion:
     """
@@ -120,6 +120,8 @@ class DataIngestion:
         Run the full data ingestion pipeline: transform data and store into vector DB.
         """
         documents = self.transform_data()
+        #clear
+        # print(documents[0])  # Print first document for verification
         vstore, _ = self.store_in_vector_db(documents)
 
         #Optionally do a quick search
