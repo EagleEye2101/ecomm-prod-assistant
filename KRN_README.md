@@ -1,7 +1,9 @@
 #.Project intro : influenced by "corrective rag langgraph " agentic rag 
 Tip : incase you need to uncommit run : git reset --soft HEAD~1 or git restore --staged . or git stash pop 
 
-#AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
+# Tech stack AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
+# Kubernetes , AWS infra Cloudformation, github actions 
+
 ETL<> ELT : Extract transform load , Extract load transform 
 FIRECRAWLER or Zepre  to extract data from website like html  
 we will use bs4 - BeautifulSoup for scrapping html from webpages 
