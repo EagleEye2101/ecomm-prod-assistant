@@ -79,7 +79,7 @@ python prod_assistant/workflow/agentic_workflow_with_mcp_websearch.py
 command : uvicorn prod_assistant.router.main.app --reload --port 8000 or 
 command : uvicorn prod_assistant.router.main:app --reload --port 8002
 
-
+if any error e.g. async etc , run with python 3.11 version (delete current venv , create new venv with python 3.11 version and install requirement.txt again)
 # --------- Docker ---------
 Check docker installed : docker -v
 make sure to run docker from your desktop 

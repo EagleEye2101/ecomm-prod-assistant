@@ -35,7 +35,7 @@ class AgenticRAG:
                 # }
                 "hybrid_search": {
                     "command": "python",
-                    "args": ["/Users/kiran_mac/Documents/AI_Training/GenAI_KrishNaik/ecomm-prod-assistant/prod_assistant/mcp_servers/product_search_server.py"],
+                    "args": ["./prod_assistant/workflow/agentic_workflow_with_mcp_websearch.py"],
                     #"port": 8000,
                     #"transport": "streamable_http"
                     "transport": "stdio"
