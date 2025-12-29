@@ -95,8 +95,34 @@ Create image : docker build -t prod-assistant .
 docker run -d -p 8000:8000 --name <container_custom_name> <created_image_name >
 docker run -d -p 8000:8000 --name product-assistant prod-assistant
 
-# check image running 
+# ------check image running --------
 browser launch : http://localhost:8000/
 
+# ----- Create Cloud Formation Code for INFRA using AWS -------
+# ---- GITHUB Secrets storage or you can store on aws secret as well
+go to github account > your repo > settings>secrets>action>new repository secrets 
+e.g.  ecomm-prod-assistant/settings/secrets/actions/new
+add below secrets from your .env file 
+GOOGLE_API_KEY
+OPENAI_API_KEY
+ASTRA_DB_API_ENDPOINT
+ASTRA_DB_APPLICATION_TOKEN
+ASTRA_DB_KEYSPACE
+# aws details from below steps
+AWS_ACCESS_KEY_ID= aws user access key
+AWS_SECRET_ACCESS_KEY=aws user secret key 
+AWS_REGION= us-east-1
+# below name from infra/eks-with-ecr.yaml file 
+ECR_REPOSITORY=product-assistant
+EKS_CLUSTER=product-assistant-cluster-latest
+ECR_REGISTRY = may not be needed
 
+# -----AWS secrets 
+IAM > Create user > add username > attach policies > select AdministratorAccess > next > Click Create User 
+Select username > Security credentials > Create access Key > Command line interface (cli) >select check box > next >Create Access Key 
+Copy user secret access key and token 
 
+# ---- GitHub Infra script trigger -------
+go to your git hub repo > actions > click on provision Infra (EKS+ECR ) from left panel > click on run workflow  from right pane
+your infra will be created
+application deplyment will trigger 
