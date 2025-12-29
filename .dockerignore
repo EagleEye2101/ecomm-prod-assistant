@@ -15,7 +15,8 @@ venv/
 # Jupyter notebooks checkpoints
 .ipynb_checkpoints
 notebook/.ipynb_checkpoints
-
+Writeup_whiteboard/
+archive/
 # Logs & temp
 logs/
 *.log

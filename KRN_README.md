@@ -1,6 +1,6 @@
 #.Project intro : influenced by "corrective rag langgraph " agentic rag 
 Tip : incase you need to uncommit run : git reset --soft HEAD~1 or git restore --staged . or git stash pop 
-
+Tip : to kill any open server ports : # force kill one liner : lsof -ti tcp:8000 | xargs -r kill -9
 # Tech stack AI BAsed bot , RAG based , Conversactional RAG  , scrapping data from amazonn and flipcard, store data in database vecort , astradb to store vectors db , we can use aws openserch alternate 
 # Kubernetes , AWS infra Cloudformation, github actions 
 
@@ -54,9 +54,49 @@ lsof -i tcp:8000
 # force kill : kill -9 <PID>
 # force kill one liner : lsof -ti tcp:8000 | xargs -r kill -9
 
+# ----------- test ----------
+scrapper : python prod_assistant/etl/data_scrapper.py
+scrapper UI : streamlit run scrapper_ui.py
+try using upload to astradb button 
+from cmd
+python prod_assistant/etl/data_ingestion.py
+python prod_assistant/retriever/retrieval.py
+# ---------LLM and provider config util/model_loader----
+ 
+ provider_key = os.getenv("LLM_PROVIDER", "openai") # Changed default to openai/google/groq
+
+# --------Test MCP ---------
+MCP server running up : python prod_assistant/mcp_servers/product_search_server.py
+test MCP server by calling Client : python prod_assistant/mcp_servers/client.py
+
+# ------ Test agentic workflow with MCP & Webserach 
+python prod_assistant/workflow/normal_generation_workflow.py
+python prod_assistant/workflow/agentic_rag_workflow.py
+python prod_assistant/workflow/agentic_workflow_with_mcp.py
+python prod_assistant/workflow/agentic_workflow_with_mcp_websearch.py
+
+# -----Running fast API and app UI with chat option ------
+command : uvicorn prod_assistant.router.main.app --reload --port 8000 or 
+command : uvicorn prod_assistant.router.main:app --reload --port 8002
 
 
+# --------- Docker ---------
+Check docker installed : docker -v
+make sure to run docker from your desktop 
+check docker images : docker images
+to delete any image : docker rmi <image id >
+Check any container running : docker ps
 
+# ----- Create Docker Image - ------
+Tip : make sure you have docker file 
+Create image : docker build -t prod-assistant .
+
+# ----- Run Docker Container -------
+docker run -d -p 8000:8000 --name <container_custom_name> <created_image_name >
+docker run -d -p 8000:8000 --name product-assistant prod-assistant
+
+# check image running 
+browser launch : http://localhost:8000/
 
 
 
