@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 from utils.config_loader import load_config
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_groq import ChatGroq
 from logger import GLOBAL_LOGGER as log
 from exception.custom_exception import ProductAssistantException
@@ -45,32 +45,63 @@ class ModelLoader:
     
 
     def load_embeddings(self):
-        """
-        Load and return embedding model from Google Generative AI.
-        """
+        """ Load and return embedding model from Google Generative AI."""
+        embeddings_block = self.config["embedding_model"]
+        provider_key = os.getenv("LLM_PROVIDER", "openai")
+        if provider_key not in embeddings_block:
+            log.error("Embedding provider not found in config", provider=provider_key)
+            raise ValueError(f"Embedding provider '{provider_key}' not found in config")
+        
         try:
-            model_name = self.config["embedding_model"]["model_name"]
-            log.info("Loading embedding model", model=model_name)
+            embedding_config = embeddings_block[provider_key]
+            provider= embedding_config.get("provider")
+            model_name = embedding_config.get("model_name")
+            log.info("Loading LLM", provider=provider, model=model_name)
 
-            # Patch: Ensure an event loop exists for gRPC aio
-            try:
-                asyncio.get_running_loop()
-            except RuntimeError:
-                asyncio.set_event_loop(asyncio.new_event_loop())
+            if provider == "google":
+                # Patch: Ensure an event loop exists for gRPC aio
+                try:
+                    asyncio.get_running_loop()
+                except RuntimeError:
+                    asyncio.set_event_loop(asyncio.new_event_loop())
 
-            return GoogleGenerativeAIEmbeddings(
-                model=model_name,
-                google_api_key=self.api_key_mgr.get("GOOGLE_API_KEY")  # type: ignore
-            )
+                return GoogleGenerativeAIEmbeddings(
+                    model=model_name,
+                    google_api_key=self.api_key_mgr.get("GOOGLE_API_KEY")  # type: ignore
+                )
+            elif provider == "groq":
+                                # Patch: Ensure an event loop exists for gRPC aio
+                try:
+                    asyncio.get_running_loop()
+                except RuntimeError:
+                    asyncio.set_event_loop(asyncio.new_event_loop())
+                return ChatGroq(
+                    model=model_name,
+                    api_key=self.api_key_mgr.get("GROQ_API_KEY") #type: ignore
+                )
+
+            elif provider == "openai":
+                                # Patch: Ensure an event loop exists for gRPC aio
+                try:
+                    asyncio.get_running_loop()
+                except RuntimeError:
+                    asyncio.set_event_loop(asyncio.new_event_loop())
+                return OpenAIEmbeddings(
+                    model=model_name,
+                    api_key=self.api_key_mgr.get("OPENAI_API_KEY")
+                )
+            else:
+                log.error("Unsupported Embedding provider", provider=provider)
+                raise ValueError(f"Unsupported Embedding provider: {provider}")
+            #model_name = self.config["embedding_model"]["model_name"]
+            #log.info("Loading embedding model", model=model_name)
         except Exception as e:
             log.error("Error loading embedding model", error=str(e))
             raise ProductAssistantException("Failed to load embedding model", sys)
 
 
     def load_llm(self):
-        """
-        Load and return the configured LLM model.
-        """
+        """ Load and return the configured LLM model."""
         llm_block = self.config["llm"]
         #provider_key = os.getenv("LLM_PROVIDER", "openai")
         provider_key = os.getenv("LLM_PROVIDER", "google")

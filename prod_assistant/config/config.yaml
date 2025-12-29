@@ -2,11 +2,17 @@ astra_db:
   collection_name: "ecommercedata"
 
 embedding_model:
-  provider: "google"
-  model_name: "models/text-embedding-004"
-  #model_name: "models/gemini-embedding-001"
+  google:
+    provider: "google"
+    model_name: "models/text-embedding-004"
+    #model_name: "models/gemini-embedding-001"
+  openai:
+    provider: "openai"
+    model_name: "text-embedding-3-small"
+
 retriever:
   top_k: 4
+
 
 llm:
   groq:
