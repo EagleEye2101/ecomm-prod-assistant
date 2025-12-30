@@ -33,13 +33,6 @@ class AgenticRAG:
                     "transport": "streamable_http",
                     "url": "http://localhost:8000/mcp"
                 }
-                # "hybrid_search": {
-                #     "command": "python",
-                #     "args": ["./prod_assistant/workflow/agentic_workflow_with_mcp_websearch.py"],
-                #     #"port": 8000,
-                #     #"transport": "streamable_http"
-                #     "transport": "stdio"
-                # }
             }
         )
 

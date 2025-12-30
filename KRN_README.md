@@ -100,6 +100,7 @@ browser launch : http://localhost:8000/
 
 # ----- Create Cloud Formation Code for INFRA using AWS -------
 # ---- GITHUB Secrets storage or you can store on aws secret as well
+
 go to github account > your repo > settings>secrets>action>new repository secrets 
 e.g.  ecomm-prod-assistant/settings/secrets/actions/new
 add below secrets from your .env file 
@@ -108,16 +109,20 @@ OPENAI_API_KEY
 ASTRA_DB_API_ENDPOINT
 ASTRA_DB_APPLICATION_TOKEN
 ASTRA_DB_KEYSPACE
+
 # aws details from below steps
+
 AWS_ACCESS_KEY_ID= aws user access key e.g.
 AWS_SECRET_ACCESS_KEY= aws user secret key e.g. 
-AWS_REGION= us-east-2
+AWS_REGION= us-east-1
+
 # below name from infra/eks-with-ecr.yaml file 
+
 ECR_REPOSITORY=product-assistant
 EKS_CLUSTER_NAME=product-assistant-cluster-latest
-ECR_REGISTRY = 299059642276.dkr.ecr.us-east-2.amazonaws.com
+ECR_REGISTRY = 299059642276.dkr.ecr.us-east-1.amazonaws.com
      ---get it from aws console >ECR >Create repo , copy id of r3egistory 
-     ---make sure deployment.yaml had same id and region e.g. container.image: 29905964.dkr.ecr.us-east-2.amazonaws.com/product-assistant:latest
+     ---make sure deployment.yaml had same id and region e.g. container.image: 29905964.dkr.ecr.us-east-1.amazonaws.com/product-assistant:latest
 
 # -----AWS secrets 
 IAM > Create user > add username > attach policies > select AdministratorAccess > next > Click Create User 
@@ -140,7 +145,7 @@ Check cli instlled : aws --version
 run : aws configure
 enter aws acces key id (Iam user)
 enter aws secret access key 
-enter region us-east-2
+enter region us-east-1
 output format none - hit enter 
 
 TIP : whenever you check in code , it autoatically trigger deployment but failed , since we did not run provision infra (EKS+ECR )
@@ -156,8 +161,8 @@ Aws console > cloudformation > stack (in your specified reasion )
 from cammand prompt check below 
 aws
 aws configure
-aws eks update-kubeconfig --name product-assistant-cluster-latest --region us-east-2 
-kubectl get nodes 
+aws eks update-kubeconfig --name product-assistant-cluster-latest --region us-east-1
+kubectl get nodes
 # to get external - ip address where your application is running , same details you can from from AWS console >ec2 > load balancer >click on id > check DNS name 
 kubectl get svc -o wide 
 
