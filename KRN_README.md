@@ -111,11 +111,12 @@ ASTRA_DB_KEYSPACE
 # aws details from below steps
 AWS_ACCESS_KEY_ID= aws user access key
 AWS_SECRET_ACCESS_KEY=aws user secret key 
-AWS_REGION= us-east-1
+AWS_REGION= us-east-2
 # below name from infra/eks-with-ecr.yaml file 
 ECR_REPOSITORY=product-assistant
 EKS_CLUSTER=product-assistant-cluster-latest
-ECR_REGISTRY = may not be needed
+ECR_REGISTRY = 299059642276.dkr.ecr.us-east-1.amazonaws.com
+     ---get it from aws console >ECR >Create repo , copy id of r3egistory 
 
 # -----AWS secrets 
 IAM > Create user > add username > attach policies > select AdministratorAccess > next > Click Create User 
@@ -123,6 +124,11 @@ Select username > Security credentials > Create access Key > Command line interf
 Copy user secret access key and token 
 
 # ---- GitHub Infra script trigger -------
-go to your git hub repo > actions > click on provision Infra (EKS+ECR ) from left panel > click on run workflow  from right pane
+go to your git hub 
+repo > actions > click on provision Infra (EKS+ECR ) from left panel > click on run workflow  from right pane
 your infra will be created
 application deplyment will trigger 
+
+# --- Check your infra ------
+login to aws console > cloudformation> stacks 
+-- based on your region selected , all servercies and repo will be created
