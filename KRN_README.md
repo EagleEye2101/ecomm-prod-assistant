@@ -114,7 +114,7 @@ AWS_SECRET_ACCESS_KEY= aws user secret key e.g.
 AWS_REGION= us-east-2
 # below name from infra/eks-with-ecr.yaml file 
 ECR_REPOSITORY=product-assistant
-EKS_CLUSTER=product-assistant-cluster-latest
+EKS_CLUSTER_NAME=product-assistant-cluster-latest
 ECR_REGISTRY = 299059642276.dkr.ecr.us-east-2.amazonaws.com
      ---get it from aws console >ECR >Create repo , copy id of r3egistory 
      ---make sure deployment.yaml had same id and region e.g. container.image: 29905964.dkr.ecr.us-east-2.amazonaws.com/product-assistant:latest
@@ -162,7 +162,7 @@ kubectl get nodes
 kubectl get svc -o wide 
 
 # get details of applications 
-kuc=bectl describe svc product-assistant-service
+kubectl describe svc product-assistant-service
 # get pod details 
 kubectl get pods -o wide
 # to get any logs like error / logs /debug logs 
