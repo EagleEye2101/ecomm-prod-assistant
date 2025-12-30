@@ -117,6 +117,7 @@ ECR_REPOSITORY=product-assistant
 EKS_CLUSTER=product-assistant-cluster-latest
 ECR_REGISTRY = 299059642276.dkr.ecr.us-east-2.amazonaws.com
      ---get it from aws console >ECR >Create repo , copy id of r3egistory 
+     ---make sure deployment.yaml had same id and region e.g. container.image: 299059642276.dkr.ecr.us-east-2.amazonaws.com/product-assistant:latest
 
 # -----AWS secrets 
 IAM > Create user > add username > attach policies > select AdministratorAccess > next > Click Create User 
