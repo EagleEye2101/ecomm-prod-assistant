@@ -7,7 +7,7 @@ Parameters:
     Default: product-assistant-cluster-latest
   NodeInstanceType:
     Type: String
-    Default: t3.micro
+    Default: t3.medium # or t3.micro for testing
   DesiredCapacity:
     Type: Number
     Default: 2 ## POD size can be adjusted later
