@@ -115,7 +115,7 @@ AWS_REGION= us-east-2
 # below name from infra/eks-with-ecr.yaml file 
 ECR_REPOSITORY=product-assistant
 EKS_CLUSTER=product-assistant-cluster-latest
-ECR_REGISTRY = 299059642276.dkr.ecr.us-east-1.amazonaws.com
+ECR_REGISTRY = 299059642276.dkr.ecr.us-east-2.amazonaws.com
      ---get it from aws console >ECR >Create repo , copy id of r3egistory 
 
 # -----AWS secrets 
