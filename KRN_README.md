@@ -109,8 +109,8 @@ ASTRA_DB_API_ENDPOINT
 ASTRA_DB_APPLICATION_TOKEN
 ASTRA_DB_KEYSPACE
 # aws details from below steps
-AWS_ACCESS_KEY_ID= aws user access key
-AWS_SECRET_ACCESS_KEY=aws user secret key 
+AWS_ACCESS_KEY_ID= aws user access key e.g.
+AWS_SECRET_ACCESS_KEY= aws user secret key e.g. 
 AWS_REGION= us-east-2
 # below name from infra/eks-with-ecr.yaml file 
 ECR_REPOSITORY=product-assistant
@@ -133,3 +133,12 @@ application deplyment will trigger
 # --- Check your infra ------
 login to aws console > cloudformation> stacks 
 -- based on your region selected , all servercies and repo will be created
+
+# ---- install aws cli on your system 
+from cmd run below
+Check cli instlled : aws --version
+run : aws configure
+enter aws acces key id (Iam user)
+enter aws secret access key 
+enter region us-east-2
+output format none - hit enter 
