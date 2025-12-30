@@ -142,3 +142,31 @@ enter aws acces key id (Iam user)
 enter aws secret access key 
 enter region us-east-2
 output format none - hit enter 
+
+TIP : whenever you check in code , it autoatically trigger deployment but failed , since we did not run provision infra (EKS+ECR )
+
+# -- Provision INFRA - GIT Create INFRA ---
+go to your repo > actions > click on Provision Infra (EKS+ECR) to run it . 
+-- it make take 10-20 minutes
+
+# -- how to check / verify -----
+Aws console > cloudformation > stack (in your specified reasion )
+# ---- once deployment is completed - get all details from cli 
+
+from cammand prompt check below 
+aws
+aws configure
+aws eks update-kubeconfig --name product-assistant-cluster-latest --region us-east-2 
+kubectl get nodes 
+# to get external - ip address where your application is running , same details you can from from AWS console >ec2 > load balancer >click on id > check DNS name 
+kubectl get svc -o wide 
+
+# get details of applications 
+kuc=bectl describe svc product-assistant-service
+# get pod details 
+kubectl get pods -o wide
+# to get any logs like error / logs /debug logs 
+kubectl logs <name from previous commnad pod e.g. product-assistant-8739234243-82347> 
+
+kubectl exec -it product-assistant-776b47db47-tpqjb --curl http://localhost:8000
+doskey /history
