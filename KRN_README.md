@@ -175,3 +175,9 @@ kubectl logs <name from previous commnad pod e.g. product-assistant-8739234243-8
 
 kubectl exec -it product-assistant-776b47db47-tpqjb --curl http://localhost:8000
 doskey /history
+
+# ---if any error run below 
+kubectl cordon ip-10-0-1-1 11.ec2.internal
+kubectl drain ip-10-0-1-111.ec2.internal -ignore-daemonsets --force --delete-local-data
+kubectl get pods |grep Pending | awk '{print $1}'| xargs kubectl delete pod 
+kubectl rollout restart deployment <deployment-name>
